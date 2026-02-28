@@ -20,7 +20,7 @@ export const AppContextProvider = (props) => {
                 getUserData()
             }
         } catch (error) {
-            toast.error(error.message)
+            // Silently fail auth check on mount
         }
     }
 
@@ -29,10 +29,10 @@ export const AppContextProvider = (props) => {
         try {
 
             const { data } = await axios.get(backendUrl + '/api/user/data')
-            data.success ? setUserData(data.userData) : toast.error(data.message)
+            data.success ? setUserData(data.userData) : null // Silence error here too, handled by getAuthState or login
 
         } catch (error) {
-            toast.error(error.message)
+            // Silently fail data fetch
         }
     }
 

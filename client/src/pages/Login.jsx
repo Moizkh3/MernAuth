@@ -32,10 +32,11 @@ const Login = () => {
           setIsLoggedIn(true)
           getUserData()
           navigate('/')
+          toast.success('Account Created Successfully')
 
         }
         else {
-          toast.error(data.message)
+          toast.error(data.message || 'Registration failed')
         }
 
       } else {
@@ -50,12 +51,12 @@ const Login = () => {
 
         }
         else {
-          toast.error(data.message)
+          toast.error(data.message || 'Login failed')
         }
       }
 
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error?.response?.data?.message || error.message)
     }
 
   };
