@@ -58,6 +58,9 @@ const Navbar = () => {
                   Verify Email
                 </li>
               )}
+              <li onClick={() => { navigate('/change-password'); setUserData(prev => ({ ...prev, showDropdown: false })) }} className="py-2 px-4 hover:bg-gray-200 cursor-pointer border-b border-gray-200">
+                Change Password
+              </li>
               <li onClick={() => { logout(); setUserData(prev => ({ ...prev, showDropdown: false })) }} className="py-2 px-4 hover:bg-gray-200 cursor-pointer">
                 Logout
               </li>

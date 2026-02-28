@@ -330,3 +330,36 @@ export const resetPassword = async (req, res) => {
     }
 
 }
+
+// change user password
+export const changePassword = async (req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    const userId = req.userId;
+
+    if (!oldPassword || !newPassword) {
+        return res.json({ success: false, message: 'Old and new passwords are required' });
+    }
+
+    try {
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            return res.json({ success: false, message: 'User not found' });
+        }
+
+        const isMatch = await bcrypt.compare(oldPassword, user.password);
+
+        if (!isMatch) {
+            return res.json({ success: false, message: 'Invalid old password' });
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        user.password = hashedPassword;
+        await user.save();
+
+        return res.json({ success: true, message: 'Password changed successfully' });
+
+    } catch (error) {
+        return res.json({ success: false, message: error.message });
+    }
+}

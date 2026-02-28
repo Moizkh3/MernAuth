@@ -4,13 +4,14 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import EmailVerify from './pages/EmailVerify';
 import ResetPassword from './pages/ResetPassword';
+import ChangePassword from './pages/ChangePassword';
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
     <>
       {/* Global Toast Container */}
-      <Toaster 
+      <Toaster
         toastOptions={{
           duration: 3000,
           style: {
@@ -21,10 +22,11 @@ const App = () => {
       />
 
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/email-verify' element={<EmailVerify/>}/>
-        <Route path='/reset-password' element={<ResetPassword/>}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/email-verify' element={<EmailVerify />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/change-password' element={<ChangePassword />} />
       </Routes>
     </>
   )
