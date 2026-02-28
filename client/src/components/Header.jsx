@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { assets } from '../assets/assets'
-import { AppContext } from '../context/appContext'
+import { AppContext } from '../context/AppContext'
 
 const Header = () => {
 
-    const {userData} = useContext(AppContext)
+  const { userData } = useContext(AppContext)
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center ">
@@ -21,7 +21,7 @@ const Header = () => {
 
       {/* Greeting */}
       <h1 className="flex items-center gap-2 mt-6 text-2xl sm:text-4xl font-medium text-gray-700">
-        Hey {userData ? userData.name : "Developer" }
+        Hey {userData ? userData.name : "Developer"}
         <img
           src={assets.hand_wave}
           alt="Wave"
