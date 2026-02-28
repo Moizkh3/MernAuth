@@ -107,7 +107,7 @@ export const WELCOME_TEMPLATE = `
             <p>Start exploring our app by clicking the button below:</p>
         </div>
         <div class="button-container">
-            <a href="http://localhost:5173" class="button">Get Started</a>
+            <a href="\${process.env.CLIENT_URL}" class="button">Get Started</a>
         </div>
         <div class="footer">
             &copy; 2025 Moiz Khatri. All rights reserved.

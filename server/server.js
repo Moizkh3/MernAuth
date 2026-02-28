@@ -11,17 +11,17 @@ const port = process.env.PORT || 4000
 
 connectDB();
 
-const allowedOrigins = ['http://localhost:5173']
+const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:5173']
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: allowedOrigins, credentials: true}))
+app.use(cors({ origin: allowedOrigins, credentials: true }))
 
 //API Endpoints
-app.get('/', (req,res) => res.send("API Working"));
+app.get('/', (req, res) => res.send("API Working"));
 app.use('/api/auth', authRouter)
 app.use('/api/user', userRouter)
 
 
-app.listen(port, ()=> console.log(`Server started on PORT:${port}`));
+app.listen(port, () => console.log(`Server started on PORT : ${port}`));
 
