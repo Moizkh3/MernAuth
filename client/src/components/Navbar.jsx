@@ -44,18 +44,21 @@ const Navbar = () => {
       <img src={assets.logo} alt="" className="w-28 sm:w-32" />
 
       {userData ? (
-        <div className="flex items-center gap-2 group relative">
-          <div className="w-8 h-8 flex justify-center items-center rounded-full bg-slate-900 text-white font-bold uppercase">
+        <div className="relative">
+          <button
+            onClick={() => setUserData(prev => ({ ...prev, showDropdown: !prev.showDropdown }))}
+            className="w-8 h-8 flex justify-center items-center rounded-full bg-slate-900 text-white font-bold uppercase outline-none"
+          >
             {userData.name[0]}
-          </div>
-          <div className="absolute hidden group-hover:block top-full right-0 z-10 text-black rounded pt-10">
-            <ul className="list-none m-0 p-2 bg-gray-100 text-sm">
+          </button>
+          <div className={`absolute ${userData.showDropdown ? 'block' : 'hidden'} top-full right-0 z-10 text-black rounded pt-2 w-max`}>
+            <ul className="list-none m-0 p-2 bg-gray-100 text-sm rounded shadow-lg border border-gray-200">
               {!userData.isAccountVerified && (
-                <li onClick={sendVerificationOtp} className="py-1 px-2 hover:bg-gray-200 cursor-pointer ">
+                <li onClick={() => { sendVerificationOtp(); setUserData(prev => ({ ...prev, showDropdown: false })) }} className="py-2 px-4 hover:bg-gray-200 cursor-pointer border-b border-gray-200">
                   Verify Email
                 </li>
               )}
-              <li onClick={logout} className="py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10">
+              <li onClick={() => { logout(); setUserData(prev => ({ ...prev, showDropdown: false })) }} className="py-2 px-4 hover:bg-gray-200 cursor-pointer">
                 Logout
               </li>
             </ul>
